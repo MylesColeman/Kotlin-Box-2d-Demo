@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="20">
+ <tileset firstgid="1" source="crystal-crystal-qubodup-ccby3-32.tsx"/>
+ <tileset firstgid="49" source="GrassyPlatformer_32x32.tsx"/>
+ <layer id="1" name="GrassyWorld" width="20" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjADswBGIjKppnAsRmNDbPmgHiZlKxORBbALEVkhkgMQDNHtekIAMAAA==
+  </data>
+ </layer>
+ <objectgroup id="2" name="Collisions">
+  <object id="3" name="Ground" x="0" y="288" width="640" height="32"/>
+  <object id="4" name="Wall" x="480" y="192" width="64" height="96"/>
+ </objectgroup>
+ <objectgroup id="3" name="Objects" class="OrangeGem">
+  <object id="10" name="PlayerStartPos" gid="67" x="64" y="224" width="32" height="32"/>
+  <object id="11" name="BlueGem01" type="BlueGem" gid="1" x="160" y="160" width="32" height="32"/>
+  <object id="12" name="GreenGem01" type="GreenGem" gid="25" x="224" y="192" width="32" height="32"/>
+  <object id="14" name="PinkGem01" type="PinkGem" gid="17" x="480" y="96" width="32" height="32"/>
+  <object id="15" name="GreyGem01" type="GreyGem" gid="9" x="64" y="128" width="32" height="32"/>
+  <object id="17" name="OrangeGem02" type="OrangeGem" gid="33" x="224" y="96" width="32" height="32"/>
+  <object id="16" name="OrangeGem01" type="OrangeGem" gid="33" x="192" y="96" width="32" height="32"/>
+  <object id="19" name="YellowGem01" type="YellowGem" gid="41" x="352" y="160" width="32" height="32"/>
+ </objectgroup>
+</map>
