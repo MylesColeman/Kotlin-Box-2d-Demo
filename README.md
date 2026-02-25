@@ -4,6 +4,8 @@ A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://git
 
 This project was generated with a Kotlin project template that includes Kotlin application launchers and [KTX](https://libktx.github.io/) utilities.
 
+This repository will eventually be merged into a comprehensive Mobile & Multiplayer foundations collection.
+
 ## Platforms
 
 - `core`: Main module with the application logic shared by all platforms.
