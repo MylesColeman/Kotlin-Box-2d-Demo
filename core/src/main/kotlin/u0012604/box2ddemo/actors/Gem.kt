@@ -1,6 +1,8 @@
 package u0012604.box2ddemo.actors
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.maps.tiled.TiledMap
@@ -23,17 +25,18 @@ internal val gemClasses = arrayOf(
 
 class Gem(
     override val world: World,
+    private val animation: Animation<TextureRegion>,
     textureRegion: TextureRegion,
     initPosition: Vector2) : Actor {
 
+        private var stateTime = 0f
+
     // Build the sprite, taking in consideration
     // that Box2d works in meters not pixels.
-    override val sprite = Sprite(textureRegion).apply {
+    override val sprite = Sprite(animation.getKeyFrame(0f)).apply {
         val w = 32f / Box2dConstants.PIXELS_PER_METER
         val h = 32f / Box2dConstants.PIXELS_PER_METER
-        setPosition(initPosition.x - width / 2f, initPosition.y - height / 2f)
-        setSize(32f / Box2dConstants.PIXELS_PER_METER, 32f / Box2dConstants.PIXELS_PER_METER)
-
+        setSize(w, h)
         // 2. Set the rotation point to the center of the sprite
         setOriginCenter()
 
@@ -54,6 +57,10 @@ class Gem(
     // Apply Box2d physics to the sprite's position.
     // ---------------------------------------------------------
     override fun update() {
+        stateTime += Gdx.graphics.deltaTime
+
+        sprite.setRegion(animation.getKeyFrame(stateTime, true))
+
         body?.let {
             sprite.setPosition(it.position.x - sprite.width / 2f, it.position.y - sprite.height / 2f )
             sprite.rotation = it.angle * MathUtils.radDeg
@@ -80,10 +87,12 @@ class Gem(
                             gemClasses.contains(klass)
                         }
                         .map {
-                            val index = gemClasses.indexOf(it.type!!)
+                            val index = gemClasses.indexOf(it.properties["type"] as String)
+                            val gemAnimation = Animation(0.1f, *textureRegions[index])
+
                             val x = it.property<Float>("x")
                             val y = it.property<Float>("y")
-                            Gem(world, textureRegions[index][0], Vector2(x, y))
+                            Gem(world, gemAnimation, textureRegions[index][0], Vector2(x, y))
                         }
                         .toList()
         }
